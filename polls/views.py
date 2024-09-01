@@ -39,7 +39,7 @@ class DetailView(generic.DetailView):
         """
         question = self.get_object()
         if not question.can_vote():
-            messages.error(request, "Voting is not allowed for this question right now.")
+            messages.error(request, "Voting on this question is currently not allowed.")
             return HttpResponseRedirect(reverse('polls:index'))
         return super().get(request, *args, **kwargs)
 
@@ -47,6 +47,14 @@ class DetailView(generic.DetailView):
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
+
+    def get_queryset(self):
+        """
+        Excludes any questions that aren't published yet.
+        """
+        published_question_list = [q.pk for q in Question.objects.all()
+                                   if q.is_published()]
+        return Question.objects.filter(pk__in=published_question_list)
 
 
 def vote(request, question_id):
