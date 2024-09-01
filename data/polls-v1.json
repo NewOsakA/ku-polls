@@ -3,7 +3,7 @@
   "model": "polls.question",
   "pk": 1,
   "fields": {
-    "question_text": "What type of movie do you like the most",
+    "question_text": "What type of movie do you like the most?",
     "pub_date": "2024-08-25T14:27:33Z"
   }
 },
