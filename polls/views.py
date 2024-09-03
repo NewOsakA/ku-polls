@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .models import Choice, Question
 
@@ -67,6 +68,7 @@ class ResultsView(generic.DetailView):
         return Question.objects.filter(pk__in=published_question_list)
 
 
+@login_required
 def vote(request, question_id):
     """
     Handling voting for a specific question.

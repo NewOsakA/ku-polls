@@ -1,5 +1,5 @@
 li a {
-    color: white;
+    color: blue;
     font-size: 25px;
 }
 h1, a {
@@ -15,9 +15,14 @@ body {
     text-align: center;
     padding: 3px;
 }
+
+
+
 .vote_count{
     text-align: center;
 }
+
+
 
 table, th, td {
     border: 1px solid gray;
@@ -46,6 +51,8 @@ tr:nth-child(odd) {
 tr:hover {
     background-color: #F9C7CA;
 }
+
+
 
 
 
