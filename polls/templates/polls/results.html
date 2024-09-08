@@ -1,6 +1,27 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'polls/style.css' %}">
 
+<div class="nav_bar">
+    <h1>Ku-Polls</h1>
+    <div class="nav_right">
+        {% if user.is_authenticated %}
+            <p>Welcome back, {{ user.username }}</p>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="log_button">Log Out</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}?next={{request.path}}" class="log_button">Log in</a>
+        {% endif %}
+    </div>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <h3 class='vote_confirm'>{{ message }}</h3>
+    {% endfor %}
+{% endif %}
+
 <h1>{{ question.question_text }}</h1>
 <table>
     <tr>

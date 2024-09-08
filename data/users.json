@@ -1,0 +1,92 @@
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$1pgGT2VMGvDEZNcUoyVRel$KL0yR7Op3EC6OXdGPp9mfzaJZuvUdOprpr4ZKv0KEes=",
+    "last_login": "2024-09-08T14:37:01.862Z",
+    "is_superuser": true,
+    "username": "NewOsakA",
+    "first_name": "",
+    "last_name": "",
+    "email": "owenachi@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-09-01T12:28:36.331Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$ZVkmNLdazO3HcJwyXykY7x$F/VvqAMMbctLCBI8JePzB+G82zF4AsqRAh0XTUGhCfQ=",
+    "last_login": "2024-09-08T14:32:04.510Z",
+    "is_superuser": false,
+    "username": "harry",
+    "first_name": "Harry",
+    "last_name": "",
+    "email": "hacker@hackerone.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-09-03T07:53:11.288Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$Lxg3iX43wq5GxyOBJRCNRm$vsp5wpv2hWJxHTsD2i+Io7JDrK7UxCoxGHxH6qW8P8U=",
+    "last_login": "2024-09-08T14:23:43.323Z",
+    "is_superuser": false,
+    "username": "demo1",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-09-08T13:39:35.002Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$CpeMMJiyqupHiVwHDMkfsL$cPSGzE7ZdQJTe5M1DcMG94vPsmySKDI2JuGG7L/UOGw=",
+    "last_login": "2024-09-08T13:42:37.958Z",
+    "is_superuser": false,
+    "username": "demo2",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-09-08T13:41:21.332Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$NeGRMzT2FelDb4ZO1YUpay$LR0txbFVEEPlHHVg7dDux9iXhTf78TSEo3HnjvR0t0w=",
+    "last_login": "2024-09-08T13:42:45.136Z",
+    "is_superuser": false,
+    "username": "demo3",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-09-08T13:41:34.901Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

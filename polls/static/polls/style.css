@@ -1,22 +1,112 @@
-li a {
-    color: white;
-    font-size: 25px;
+h1 {
+    color: Black;
+    font-size: 50px;
+    margin-left: 20px
+    margin: 0;
 }
-h1, a {
-    color: black;
+
+h2 {
+    color: FCE6CA;
+    font-size: 40px;
+    text-shadow:
+        1px 1px 0 #000,  /* Horizontal and vertical shadow with color */
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000;
 }
+
+h3 {
+    color: FCE6CA;
+    font-size: 30px;
+    text-shadow:
+        1px 1px 0 #000,  /* Horizontal and vertical shadow with color */
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000;
+}
+
+a {
+    color: #FCE6CA;
+    width: 400px;
+}
+
+ul {
+    padding: 0;
+}
+
 body {
     background: white url("images/new_background.png") no-repeat ;
     background-size: cover;
 }
-.alert {
+
+.nav_bar {
+    background: #F6CD62;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    justify-content: space-between; /* Distribute space between items */
+    padding: 0 20px;
+}
+
+.nav_right {
+    display: flex;
+    align-items: center; /* Vertically align items */
+}
+
+.log_button {
+    background-color: #E87A28;
+    border: none;
+    color: white;
+    padding: 8px;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+fieldset {
+    border: 2px solid #5B5427;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px 0;
+    background-color: #A69056;
+}
+
+legend {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.question_containers {
+    background: #E87A28;
+    text-align: center;
+    color: black;
+    padding: 20px 5%;
+    margin: 20px 25%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.alert h2 {
     background-color: #FACECE;
     color: red;
     text-align: center;
-    padding: 3px;
+    padding: 0px;
+    border-radius: 10px;
+    text-shadow: none;
 }
+
 .vote_count{
     text-align: center;
+}
+
+.vote_confirm {
+    background-color: #A69056;
+    color: FCE6CA;
+    text-align: center;
+    border-radius: 5px;
+
 }
 
 table, th, td {
@@ -46,6 +136,8 @@ tr:nth-child(odd) {
 tr:hover {
     background-color: #F9C7CA;
 }
+
+
 
 
 

@@ -1,10 +1,25 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'polls/style.css' %}">
 
+<div class="nav_bar">
+    <h1>Ku-Polls</h1>
+    <div class="nav_right">
+        {% if user.is_authenticated %}
+            <p>Welcome back, {{ user.username }}</p>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="log_button">Log Out</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}?next={{request.path}}" class="log_button">Log in</a>
+        {% endif %}
+    </div>
+</div>
+
 <form action="{% url 'polls:vote' question.id %}" method="post">
     {% csrf_token %}
     <fieldset>
-        <legend><h1>{{ question.question_text }}</h1></legend>
+        <legend><h2>{{ question.question_text }}</h2></legend>
 
         {% if messages %}
             {% for message in messages %}
@@ -15,10 +30,12 @@
         {% endif %}
 
         {% for choice in question.choice_set.all %}
-            <div class="choice-item">
+            {% if choice.id == last_vote %}
+                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" checked>
+            {% else %}
                 <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-                <label class="choice_text" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
-            </div>
+            {% endif %}
+                <label class="choice_text" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
         {% endfor %}
     </fieldset>
 
