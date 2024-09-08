@@ -1,6 +1,17 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'polls/style.css' %}">
 
+<div>
+    {% if user.is_authenticated %}
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="log_button">Log Out</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}?next={{request.path}}" class="log_button">Log in</a>
+    {% endif %}
+</div>
+
 <form action="{% url 'polls:vote' question.id %}" method="post">
     {% csrf_token %}
     <fieldset>
@@ -15,10 +26,12 @@
         {% endif %}
 
         {% for choice in question.choice_set.all %}
-            <div class="choice-item">
+            {% if choice.id == last_vote %}
+                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" checked>
+            {% else %}
                 <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-                <label class="choice_text" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
-            </div>
+            {% endif %}
+                <label class="choice_text" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
         {% endfor %}
     </fieldset>
 

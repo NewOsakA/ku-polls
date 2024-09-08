@@ -45,11 +45,25 @@ class DetailView(generic.DetailView):
         Handle GET requests for the detail view of a specific question.
         Redirect to the index page with an error message if voting is not allowed.
         """
-        question = self.get_object()
+        # Replace cludgy code with Messages.
+        try:
+            question = self.get_object()
+        except Http404:
+            messages.error(request, "This question is not available.")
+            return HttpResponseRedirect(reverse('polls:index'))
+
         if not question.can_vote():
             messages.error(request, "Voting on this question is currently not allowed.")
             return HttpResponseRedirect(reverse('polls:index'))
-        return super().get(request, *args, **kwargs)
+
+        this_user = request.user
+        last_vote = None
+        if this_user.is_authenticated:
+            try:
+                last_vote = Vote.objects.get(user=this_user, choice__question=question).choice.id
+            except Vote.DoesNotExist:
+                last_vote = None
+        return render(request, self.template_name, {'question': question, 'last_vote': last_vote})
 
 
 class ResultsView(generic.DetailView):

@@ -1,9 +1,20 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'polls/style.css' %}">
 
+<div>
+    {% if user.is_authenticated %}
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="log_button">Log Out</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}?next={{request.path}}" class="log_button">Log in</a>
+    {% endif %}
+</div>
+
 {% if message %}
     {% for msg in message %}
-        <h2>{{ message }}</h2>
+        <h2 class="confirm_text">{{ message }}</h2>
     {% endfor %}
 {% endif %}
 
