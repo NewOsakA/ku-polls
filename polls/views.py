@@ -107,7 +107,7 @@ def vote(request, question_id):
         # user has a vote for this question! Update his vote
         vote.choice = selected_choice
         vote.save()
-        messages.success(request, f"Your vote was changed to '{selected_choice.choice_text}")
+        messages.success(request, f"Your vote was changed to '{selected_choice.choice_text}'")
     except Vote.DoesNotExist:
         # does not have a vote
         vote = Vote.objects.create(user=this_user, choice=selected_choice)
