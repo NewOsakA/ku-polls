@@ -6,6 +6,9 @@ from django.views import generic
 from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.signals import user_logged_in, user_logged_out, user_login_failed
+from django.dispatch import receiver
+import logging
 
 from .models import Choice, Question, Vote
 
@@ -82,16 +85,34 @@ class ResultsView(generic.DetailView):
         return Question.objects.filter(pk__in=published_question_list)
 
 
+def get_client_ip(request):
+    """
+    Get the visitor’s IP address using request headers.
+    """
+    forwarded_for_header = request.META.get('HTTP_X_FORWARDED_FOR')
+    if forwarded_for_header:
+        client_ip = forwarded_for_header.split(',')[0]
+    else:
+        client_ip = request.META.get('REMOTE_ADDR')
+    return client_ip
+
+
+logger = logging.getLogger('polls')
+
+
 @login_required
 def vote(request, question_id):
     """
     Handling voting for a specific question.
     """
     question = get_object_or_404(Question, pk=question_id)
+    this_user = request.user
+    ip_address = get_client_ip(request)
 
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
+        logger.warning(f"{this_user} failed to vote in {question} from {ip_address}")
         # Redisplay the question voting form.
         return render(request, 'polls/detail.html', {
             'question': question,
@@ -107,6 +128,8 @@ def vote(request, question_id):
         # user has a vote for this question! Update his vote
         vote.choice = selected_choice
         vote.save()
+
+        logger.info(f'{this_user} voted for Choice {selected_choice.id} in Question {question.id} from {ip_address}')
         messages.success(request, f"Your vote was changed to '{selected_choice.choice_text}'")
     except Vote.DoesNotExist:
         # does not have a vote
@@ -118,3 +141,30 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
     return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+
+def log_user_activity(action, user=None, request=None):
+    """
+    Helper function to log user activities like login, logout, and login failures.
+    """
+    ip_address = get_client_ip(request) if request else 'Unknown IP'
+    if user:
+        logger.info(f'{user} {action} from {ip_address}')
+    else:
+        logger.warning(f'{action} from {ip_address}')
+
+
+@receiver(user_logged_in)
+def log_user_login(request, user, **kwargs):
+    log_user_activity('logged in', user=user, request=request)
+
+
+@receiver(user_logged_out)
+def log_user_logout(request, user, **kwargs):
+    log_user_activity('logged out', user=user, request=request)
+
+
+@receiver(user_login_failed)
+def log_user_login_failed(request, **kwargs):
+    log_user_activity('failed to log in', request=request)
+
