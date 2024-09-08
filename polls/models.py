@@ -4,6 +4,8 @@ import datetime
 
 from django.db import models
 from django.utils import timezone
+from django.contrib import admin
+from django.contrib.auth.models import User
 
 
 class Question(models.Model):
@@ -12,7 +14,7 @@ class Question(models.Model):
     Each question has its own text and a publication date.
     """
     question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField('date published', default=timezone.now)
     end_date = models.DateTimeField('date ending', null=True, blank=True)
 
     def was_published_recently(self):
@@ -37,6 +39,11 @@ class Question(models.Model):
         return self.question_text
 
 
+@admin.display(
+    boolean=True,
+    ordering='pub_date',
+    description='Is published',
+)
 class Choice(models.Model):
     """
     Represents a choice in a poll question.
@@ -44,8 +51,23 @@ class Choice(models.Model):
     """
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
+    # votes = models.IntegerField(default=0)
+
+    @property
+    def votes(self):
+        """Return the number of votes for this choice."""
+        return self.vote_set.count()
 
     def __str__(self):
         """Returns a string which represent the text choice."""
         return self.choice_text
+
+
+class Vote(models.Model):
+    """A vote by a user for a choice in a poll"""
+
+    choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Vote by {self.user.username} for {self.choice.choice_text}"

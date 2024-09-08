@@ -1,6 +1,12 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'polls/style.css' %}">
 
+{% if message %}
+    {% for msg in message %}
+        <h2>{{ message }}</h2>
+    {% endfor %}
+{% endif %}
+
 <h1>{{ question.question_text }}</h1>
 <table>
     <tr>
