@@ -9,11 +9,48 @@ https://cpske.github.io/ISP) course at [Kasetsart University](https://www.ku.ac.
 
 ## Installation
 
-To be added. If the procedure is long, put it in the wiki or a separate file.
+Please follow the steps in the [Installation Guide](Installation.md).
+
 
 ## Running the Application
 
-To be added.
+After completing the steps outlined in the Installation Guide, please follow these steps.
+
+### 1. Activate the Virtual Environment
+* For Linux and macOS:
+```
+source venv/bin/activate
+```
+* For Windows:
+```
+.\venv\Scripts\activate
+```
+
+### 2. Start the Django Development Server
+Run the following command to start the server. 
+```
+python manage.py runserver
+```
+
+### 3. Access the Application
+Open your desire web browser and go to ```http://localhost:8000``` to view the application.
+
+### 4. Stop the Server
+To stop the server, press ```Ctrl+C``` in your running terminal.
+
+### 5. Deactivate the Virtual Environment
+Deactivate the virtual environment once you finish by running:
+``` 
+deactivate
+```
+
+## Demo Users
+| Username | Password |
+|:--------:|----------|
+|  demo1   | hackme11 |
+|  demo2   | hackme22 |
+|  demo3   | hackme33 |
+
 
 ## Project Documents
 
