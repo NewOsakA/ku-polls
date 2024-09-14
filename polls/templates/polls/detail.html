@@ -19,7 +19,7 @@
 <form action="{% url 'polls:vote' question.id %}" method="post">
     {% csrf_token %}
     <fieldset>
-        <legend><h2>{{ question.question_text }}</h2></legend>
+        <h2 style="margin:2px 0px;">{{ question.question_text }}</h2>
 
         {% if messages %}
             {% for message in messages %}
@@ -37,11 +37,13 @@
             {% endif %}
                 <label class="choice_text" for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
         {% endfor %}
+
+        <div class="action-set" >
+            <input type="submit" value="Vote" class="button">
+            <a href="{% url 'polls:index' %}" class="button-2">Back to List of Polls</a>
+            <a href="{% url 'polls:results' question.id %}" class="button-2">Results</a>
+        </div>
     </fieldset>
 
-    <div class="form-actions">
-        <input type="submit" value="Vote">
-        <a href="{% url 'polls:index' %}" class="button">Back to List of Polls</a>
-        <a href="{% url 'polls:results' question.id %}" class="button">Results</a>
-    </div>
+
 </form>
