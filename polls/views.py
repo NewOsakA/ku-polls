@@ -1,12 +1,13 @@
 """View modules for handling polling functionality in KU Polls."""
-from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.signals import user_logged_in, user_logged_out, user_login_failed
+from django.contrib.auth.signals import user_logged_in, \
+    user_logged_out, user_login_failed
 from django.dispatch import receiver
 import logging
 
@@ -46,7 +47,8 @@ class DetailView(generic.DetailView):
     def get(self, request, *args, **kwargs):
         """
         Handle GET requests for the detail view of a specific question.
-        Redirect to the index page with an error message if voting is not allowed.
+        Redirect to the index page with an error message if voting
+        is not allowed.
         """
         # Replace cludgy code with Messages.
         try:
@@ -167,4 +169,3 @@ def log_user_logout(request, user, **kwargs):
 @receiver(user_login_failed)
 def log_user_login_failed(request, **kwargs):
     log_user_activity('failed to log in', request=request)
-

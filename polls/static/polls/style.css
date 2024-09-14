@@ -45,13 +45,14 @@ body {
     display: flex;
     align-items: center;
     border-radius: 8px;
-    justify-content: space-between; /* Distribute space between items */
+    justify-content: space-between;
     padding: 0 20px;
+    border: 2px solid #ebad0e;
 }
 
 .nav_right {
     display: flex;
-    align-items: center; /* Vertically align items */
+    align-items: center;
 }
 
 .log_button {
@@ -63,7 +64,15 @@ body {
     border-radius: 5px;
     text-decoration: none;
     margin-left: 10px;
+    width: 80px;
+    transition: background-color 0.3s ease;
+    margin: 20px 0 20px 10px;
 }
+
+.log_button:hover {
+    background-color: #F5A623;
+}
+
 
 fieldset {
     border: 2px solid #5B5427;
@@ -106,7 +115,6 @@ legend {
     color: FCE6CA;
     text-align: center;
     border-radius: 5px;
-
 }
 
 table, th, td {
@@ -137,7 +145,59 @@ tr:hover {
     background-color: #F9C7CA;
 }
 
+.button {
+    background-color: #E87A28;
+    border-radius: 8px;
+    border-width: 0;
+    color: #FCE6CA;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 10px 12px;
+    text-align: center;
+    transition: all 200ms;
+    vertical-align: baseline;
+    white-space: nowrap;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    text-decoration: none;
+    width: 130px;
+}
 
+.button-2 {
+    background-color: #e89228;
+    border-radius: 8px;
+    border-width: 0;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 10px 12px;
+    text-align: center;
+    transition: all 200ms;
+    vertical-align: baseline;
+    white-space: nowrap;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    text-decoration: none;
+    width: 130px;
+}
+
+.action-set {
+    padding: 15px 0 0 0;
+}
 
 
 
