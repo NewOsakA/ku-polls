@@ -38,7 +38,7 @@
                 <li>
                     <div class="question_containers">
                         <a href="{% url 'polls:detail' question.id %}" class="question_text">{{ question.question_text }}</a>
-                        <a href="{% url 'polls:results' question.id %}" class="result_button">Results</a>
+                        <a href="{% url 'polls:results' question.id %}" class="button-3">Results</a>
                     </div>
                 </li>
             {% endfor %}
