@@ -46,6 +46,7 @@ copy sample.env .env
 
 ### 6. Edit the ```.env``` File 
 Open the ```.env``` file in a text editor and modify the variables to suit your local setup.
+There is an example provided in the directory named 'sample.env'
 
 ### 7. Apply Database Migrations
 Run the migrations to set up the database schema.
