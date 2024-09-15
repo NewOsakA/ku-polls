@@ -22,5 +22,13 @@
     "choice": 5,
     "user": 3
   }
+},
+{
+  "model": "polls.vote",
+  "pk": 4,
+  "fields": {
+    "choice": 12,
+    "user": 1
+  }
 }
 ]
