@@ -1,0 +1,30 @@
+[run]
+# Only run coverage on the KU Polls app code, not on third-party libraries or Django itself
+omit =
+    /usr/*
+    /usr/local/*
+    .local/*
+    env/*
+
+    # Omit package files
+    __init__.py
+
+    # Omit Django migrations
+    polls/migrations/*
+
+    # Omit Django project configuration
+    mysite/*
+
+    # Omit manage.py
+    */manage.py
+
+
+[report]
+# Exclude lines that are not interesting for coverage reports
+exclude_lines =
+    # Ignore standard library, comments, and special methods
+    pragma: no cover
+    def __repr__
+    def __str__
+    # Ignore if __name__ == '__main__' block
+    if __name__ == '__main__'
